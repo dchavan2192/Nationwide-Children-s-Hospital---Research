@@ -1,27 +1,91 @@
-# Research @ Nationwide-Children's-Hospital
-## Overview
-- Research focus is on understanding how the spatial organization of immune and tumor cells within the tumor microenvironment correlates with cancer progression and treatment response
-- Datasets came from published papers on high-resolution spatial single-cell imaging of brain, lung, and head/neck tumor tissues
-- Developed python algorithms to map out cell slides, cluster immune cells (CD8+ cells), and perform statisitcal analysis of cluster count, responder vs non-responder, etc
-- Currently drafting a research paper to be submitted to a journal
+# 🧪 Research @ Nationwide Children's Hospital  
+**Spatial Analysis of the Tumor Microenvironment in Cancer Immunotherapy**
 
-## Tools Used
-- Python (PyCharm)
-- Pandas, Matplotlib, Numpy, Statsmodel, Sci-Learn, Scipy.io
- 
-## Code Walkthrough
+---
 
-- Mapping out cell sides is essential to asses the structures and cell types present. Cell coordinates need to be extracted in the correct manner in order to achieve accurate results. In certain datasets such as the Brain and Lung Tumor the cell coordinates are encoded through lattice correlations (describe what lattice correlations are).
+## 📊 Overview
+
+- This research focuses on understanding how the **spatial organization of immune and tumor cells** within the **tumor microenvironment (TME)** affects cancer progression and response to immunotherapy.
+- The datasets were derived from **published studies** using **high-resolution spatial single-cell imaging** of tumor tissues from **brain, lung, and head/neck cancers**.
+- Developed Python algorithms to:
+  - Map cell distributions within tumor tissue slides
+  - Identify and **cluster immune cells** (e.g., CD8+ T-cells)
+  - Compare spatial patterns between **responders** and **non-responders** to treatment
+- Currently co-authoring a manuscript for submission to a peer-reviewed journal.
+
+---
+
+## 🧰 Tools & Technologies
+
+- **Python** (developed in PyCharm)
+- Libraries: `pandas`, `matplotlib`, `numpy`, `scipy.io`, `statsmodels`, `scikit-learn`
+
+---
+
+## 🔍 Key Concepts Explained
+
+### 🧫 What Are Immune Cells Doing in Tumors?
+- Immune cells like **CD8+ T-cells** are expected to **attack tumor cells**.
+- Their **location and clustering** relative to tumor cells can reveal how well the immune system is responding.
+
+### 🧱 What Is the Tumor Microenvironment (TME)?
+- The **TME** includes tumor cells, immune cells, blood vessels, and stromal tissue.
+- The **spatial layout** of these cells can influence how a tumor grows or responds to treatment.
+
+### 🧪 Responders vs Non-Responders
+- Patients are categorized as:
+  - **Responders**: their tumor shrinks or stabilizes after **immune checkpoint inhibitor (ICI)** therapy.
+  - **Non-Responders**: their tumor does not improve.
+- Analyzing these groups helps uncover spatial biomarkers of **treatment success**.
+
+---
+
+## 🧭 Project Pipeline
+
+### 🧬 1. Mapping Out Tumor Slides
+
+We begin by visualizing individual cells from tissue slides using their **x, y spatial coordinates**. These coordinates are sometimes encoded through **lattice correlations** (a method for positioning cells on structured grids).
 
 ![Slide Cell Map](BrM_001C2_allcells.png)
 
-- [Code for slide plotting](cellMap.py)
+📄 [Code for slide plotting](cellMap.py)
 
-- Taking a deeper dive into the response of immune cells (Immune cells also go by either CD8+ or T-Cells), we cluster any immune cells within 30 μm of each other (Explain significance of clustering from paper), the plot is shown below.
+---
+
+### 🧪 2. Clustering Immune Cells
+
+CD8+ (cytotoxic T-cells) are clustered using **DBSCAN** to find groups within **30 μm** proximity. Clustering immune cells reveals how they may be "attacking" or surrounding tumor cells.
 
 ![CD8 Cluster](tcellclusterView.png)
 
-- Looking into a more clinical perspective, we look at whether or not the patient has improved based off Immune Checkpoint Inhibitors, a form of immunotherapy treatment. The slides are classifed into two categories, responder or non-responder. By comparing the responses to a fencing metric, how well immune cells "fence in" or surround tumor cells in a spatial tissue sample, we can reveal whether immune cell spatial clustering around tumors is associated with a better response to immunotherapy — and may help identify spatial biomarkers of treatment success. Below is a comparison plot for Alternative Macrophage Cells.
+📄 [Clustering & visualization code](cellMap.py)
+
+---
+
+### 🛡️ 3. Fencing Metric: Measuring Tumor "Surrounding"
+
+To understand immune-tumor interaction, we calculate a **fencing metric**:  
+> How well immune cells “fence in” or surround tumor cells.
+
+Comparing **responders** and **non-responders** with this metric helps assess whether **immune cell positioning** relates to successful treatment.
 
 ![Alt Mac Hist](Alt_MAC_hist.png)
-- [Code for statistcal response comparison and fencing calculations](NRvR.py)
+
+📄 [Statistical analysis & fencing calculations](NRvR.py)
+
+---
+
+## 📏 Fencing Metric Parameters
+
+| Parameter              | Description                                                  |
+|------------------------|--------------------------------------------------------------|
+| `N_SHUFFLES = 5000`    | Number of random permutations for statistical significance    |
+| `DBSCAN_EPS = 30`      | Max distance between clustered immune cells (μm)             |
+| `DBSCAN_MIN_SAMPLES=3` | Minimum number of immune cells to form a valid cluster       |
+| `MIN_CELL_COUNT = 20`  | Minimum cell count required on a slide for inclusion         |
+| `ALPHA = 0.05`         | Significance level for hypothesis testing                    |
+
+These constraints ensure **statistical rigor** and eliminate noise from low-cell-count slides.
+
+---
+
