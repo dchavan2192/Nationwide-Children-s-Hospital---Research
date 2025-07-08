@@ -10,9 +10,9 @@ from tqdm import tqdm
 from scipy.stats import ks_2samp
 
 # Set up files
-MAT_FOLDER = "/Users/dineshchavan/Documents/BrainData/BRAIN_IMC_CellType"
-SEG_FOLDER = "/Users/dineshchavan/Documents/BrainData/BRAIN_IMC_Segmentation"
-OUTPUT_FOLDER = "/Users/dineshchavan/Downloads/metastasis_combined"
+MAT_FOLDER = "BrainData/BRAIN_IMC_CellType"
+SEG_FOLDER = "/BrainData/BRAIN_IMC_Segmentation"
+OUTPUT_FOLDER = "/metastasis_combined"
 NRVR_JSON = os.path.join(OUTPUT_FOLDER, "nrvrV2_jsons")
 COORDS_JSON_FOLDER = os.path.join(OUTPUT_FOLDER, "SlideCoordinates")
 
