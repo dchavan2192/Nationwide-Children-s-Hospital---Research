@@ -11,4 +11,6 @@
  
 ## Code Walkthrough
 
-- Mapping out cell sides is essential to asses the structures and cell types present. Cell coordinates need to be extracted in the correct manner in order to achieve accurate results. In
+- Mapping out cell sides is essential to asses the structures and cell types present. Cell coordinates need to be extracted in the correct manner in order to achieve accurate results. In certain datasets such as the Brain and Lung Tumor the cell coordinates are encoded through lattice correlations (describe what lattice correlations are).
+
+![Slide Cell Map](BrM_001C2_allcells.png)
