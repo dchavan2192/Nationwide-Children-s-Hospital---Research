@@ -15,7 +15,7 @@
 
 ![Slide Cell Map](BrM_001C2_allcells.png)
 
-[Code for slide plotting](cellMap.py)
+- [Code for slide plotting](cellMap.py)
 
 - Taking a deeper dive into the response of immune cells (Immune cells also go by either CD8+ or T-Cells), we cluster any immune cells within 30 μm of each other (Explain significance of clustering from paper), the plot is shown below.
 
@@ -24,4 +24,4 @@
 - Looking into a more clinical perspective, we look at whether or not the patient has improved based off Immune Checkpoint Inhibitors, a form of immunotherapy treatment. The slides are classifed into two categories, responder or non-responder. By comparing the responses to a fencing metric, how well immune cells "fence in" or surround tumor cells in a spatial tissue sample, we can reveal whether immune cell spatial clustering around tumors is associated with a better response to immunotherapy — and may help identify spatial biomarkers of treatment success. Below is a comparison plot for Alternative Macrophage Cells.
 
 ![Alt Mac Hist](Alt_MAC_hist.png)
-[Code for statistcal response comparison and fencing calculations](NRvR.py)
+- [Code for statistcal response comparison and fencing calculations](NRvR.py)
